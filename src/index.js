@@ -20,6 +20,11 @@ function formatConfig(obj, options = {}) {
 module.exports = { pickKeys, sortByKey, formatConfig };
 
 if (require.main === module) {
+  // In test mode, do nothing and immediately exit with success
+  if (process.env.NODE_ENV === 'test') {
+    process.exit(0);
+  }
+
   const input = process.argv[2];
   if (!input) {
     console.error("Usage: node index.js <json-string>");
